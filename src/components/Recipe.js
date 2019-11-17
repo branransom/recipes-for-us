@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import _ from "lodash";
+import "./Recipe.css";
 
 class Recipe extends React.Component {
   state = {
@@ -17,13 +18,19 @@ class Recipe extends React.Component {
     return ingredients.map(({ ingredientName }) => {
       return (
         <div className="item">
-          <div className="right floated content">
-            <div className="ui button">Remove</div>
-          </div>
+          {/* <div className="right floated content">
+            <div className="ui compact negative icon button">
+              <i className="x icon"></i>
+            </div>
+          </div> */}
           <div className="content">{ingredientName}</div>
         </div>
       );
     });
+  };
+
+  renderInstructions = instructions => {
+    return <div>{instructions}</div>;
   };
 
   render() {
@@ -34,18 +41,30 @@ class Recipe extends React.Component {
     }
 
     return (
-      <div>
-        <h1>{recipe.name}</h1>
-        <p>{recipe.description}</p>
-        <p>Category: {recipe.category}</p>
-        <p>Number of Servings: {recipe.numberOfServings}</p>
-        <div className="ui card">
-          <div className="content">
-            <div className="header">Ingredients</div>
+      <div className="ui padded grid">
+        <div className="ui sixteen wide column">
+          <div className="ui segment">
+            <h1>{recipe.name}</h1>
+            <p>{recipe.description}</p>
+            <p>Category: {recipe.category}</p>
+            <p>Number of Servings: {recipe.numberOfServings}</p>
           </div>
-          <div className="content">
-            <div className="ui middle aligned divided list">
-              {this.renderIngredients(recipe.ingredients)}
+        </div>
+        <div className="ui six wide column">
+          <div className="ui segment">
+            <h3 className="header">Ingredients</h3>
+            <div className="content">
+              <div className="ui middle aligned divided list">
+                {this.renderIngredients(recipe.ingredients)}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="ui ten wide column">
+          <div className="ui segment">
+            <h3 className="header">Instructions</h3>
+            <div className="content display-linebreak">
+              {this.renderInstructions(recipe.instructions)}
             </div>
           </div>
         </div>
