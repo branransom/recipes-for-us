@@ -1,0 +1,22 @@
+{
+  "name": "recipes-for-us",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/router": "^8.0.2",
+    "koa": "^2.10.0",
+    "koa-bodyparser": "^4.2.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.7.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
