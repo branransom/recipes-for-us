@@ -10,19 +10,14 @@ class Recipe extends React.Component {
 
   async componentDidMount() {
     const { recipeId } = this.props.match.params;
-    const response = await axios.get(`/recipes/${recipeId}`);
+    const response = await axios.get(`/api/recipes/${recipeId}`);
     this.setState({ recipe: response.data });
   }
 
   renderIngredients = ingredients => {
     return ingredients.map(({ ingredientName }) => {
       return (
-        <div className="item">
-          {/* <div className="right floated content">
-            <div className="ui compact negative icon button">
-              <i className="x icon"></i>
-            </div>
-          </div> */}
+        <div className="item" key={ingredientName}>
           <div className="content">{ingredientName}</div>
         </div>
       );

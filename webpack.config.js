@@ -1,5 +1,13 @@
+const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+
 module.exports = {
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].[contenthash].js",
+    publicPath: "/"
+  },
   module: {
     rules: [
       {
@@ -28,5 +36,14 @@ module.exports = {
       template: "./src/index.html",
       filename: "./index.html"
     })
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      chunks: "all"
+    }
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    historyApiFallback: true
+  }
 };

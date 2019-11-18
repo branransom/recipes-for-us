@@ -8,23 +8,31 @@ class RecipeList extends React.Component {
   };
 
   async componentDidMount() {
-    const response = await axios.get("/recipes");
+    const response = await axios.get("/api/recipes");
     this.setState({ recipes: response.data });
   }
 
   renderRecipeNames = () => {
     return this.state.recipes.map(recipe => (
-      <li key={recipe.name}>
-        <Link to={`/recipe/${recipe._id}`}>{recipe.name}</Link>
-      </li>
+      <div key={recipe.name} className="ui item">
+        <div className="content">
+          <h4 class="ui header">
+            <Link to={`/recipes/${recipe._id}`}>{recipe.name}</Link>
+          </h4>
+          <div className="description">{recipe.description}</div>
+        </div>
+      </div>
     ));
   };
 
   render() {
     return (
-      <div>
+      <div className="ui padded segment">
         <h1>Recipes</h1>
-        <ul>{this.renderRecipeNames()}</ul>
+        <div className="ui divided list">{this.renderRecipeNames()}</div>
+        <div className="ui button">
+          <Link to="/create">Create Recipe</Link>
+        </div>
       </div>
     );
   }

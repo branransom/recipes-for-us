@@ -1,5 +1,7 @@
+const path = require("path");
 const Koa = require("koa");
 const bodyParser = require("koa-bodyparser");
+const cors = require("@koa/cors");
 const mongoose = require("mongoose");
 const db = require("./config/db");
 const router = require("./router");
@@ -19,12 +21,13 @@ const errorHandler = async (ctx, next) => {
 
 app
   .use(errorHandler)
+  .use(cors())
   .use(bodyParser())
+  .use(serve(path.resolve(__dirname, "..", "dist")))
   .use(router.routes())
-  .use(router.allowedMethods())
-  .use(serve("./dist"));
+  .use(router.allowedMethods());
 
-app.on("error", (err, ctx) => {
+app.on("error", err => {
   console.log("Server error occurred: ", err);
 });
 
