@@ -13,7 +13,7 @@ const RecipeNew = () => {
 
   return (
     <form className="ui form" onSubmit={formik.handleSubmit}>
-      <h3 class="ui dividing header">Your New Recipe</h3>
+      <h3 className="ui dividing header">Your New Recipe</h3>
       <div className="field">
         <label htmlFor="name">Recipe Name</label>
         <input
