@@ -16,7 +16,7 @@ class RecipeList extends React.Component {
     return this.state.recipes.map(recipe => (
       <div key={recipe.name} className="ui item">
         <div className="content">
-          <h4 class="ui header">
+          <h4 className="ui header">
             <Link to={`/recipes/${recipe._id}`}>{recipe.name}</Link>
           </h4>
           <div className="description">{recipe.description}</div>

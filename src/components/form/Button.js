@@ -1,13 +1,10 @@
 import React from "react";
 
 const Button = props => {
-  console.log(props.style);
   return (
     <button
       style={props.style}
-      className={
-        props.type == "primary" ? "ui button primary" : "ui button secondary"
-      }
+      className={props.type == "primary" ? "ui button primary" : "ui button"}
       onClick={props.action}
     >
       {props.title}

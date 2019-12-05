@@ -41,7 +41,7 @@ class Recipe extends React.Component {
           <div className="ui segment">
             <h1>{recipe.name}</h1>
             <p>{recipe.description}</p>
-            <p>Category: {recipe.category}</p>
+            <p>Meal: {recipe.meal}</p>
             <p>Number of Servings: {recipe.numberOfServings}</p>
           </div>
         </div>

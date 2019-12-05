@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import axios from "axios";
 
-import Input from "../components/Input";
-import TextArea from "../components/TextArea";
-import Select from "../components/Select";
-import Button from "../components/Button";
+import Input from "../components/form/Input";
+import TextArea from "../components/form/TextArea";
+import Select from "../components/form/Select";
+import Button from "../components/form/Button";
 
-class FormContainer extends Component {
+class RecipeNew extends Component {
   constructor(props) {
     super(props);
 
@@ -13,11 +14,11 @@ class FormContainer extends Component {
       newRecipe: {
         name: "",
         description: "",
-        category: "",
+        meal: "",
         instructions: ""
       },
 
-      categoryOptions: ["Breakfast", "Lunch", "Dinner"]
+      mealOptions: ["Breakfast", "Lunch", "Dinner"]
     };
   }
 
@@ -39,7 +40,6 @@ class FormContainer extends Component {
   };
 
   handleTextArea = e => {
-    console.log("Inside handleTextArea");
     let value = e.target.value;
     this.setState(
       prevState => ({
@@ -52,8 +52,12 @@ class FormContainer extends Component {
     );
   };
 
-  handleFormSubmit = e => {
+  handleFormSubmit = async e => {
     e.preventDefault();
+    const { newRecipe } = this.state;
+    await axios.post("/api/recipes", newRecipe);
+
+    this.props.history.push("/");
   };
 
   handleClearForm = e => {
@@ -62,7 +66,7 @@ class FormContainer extends Component {
       newRecipe: {
         name: "",
         description: "",
-        category: "",
+        meal: "",
         instructions: ""
       }
     });
@@ -85,35 +89,35 @@ class FormContainer extends Component {
           title={"Recipe Description"}
           name={"description"}
           value={this.state.newRecipe.description}
-          placeholder={"Enter a recipe name"}
+          placeholder={"Enter a description"}
           handleChange={this.handleInput}
         />
         <Select
-          title={"Category"}
-          name={"category"}
-          options={this.state.categoryOptions}
-          value={this.state.newRecipe.category}
-          placeholder={"Select Category"}
+          title={"Meal"}
+          name={"meal"}
+          options={this.state.mealOptions}
+          value={this.state.newRecipe.meal}
+          placeholder={"Select meal"}
           handleChange={this.handleInput}
         />
         <TextArea
           title={"Instructions"}
           rows={10}
           value={this.state.newRecipe.instructions}
-          name={"instructioins"}
+          name={"instructions"}
           handleChange={this.handleTextArea}
           placeholder={"How do you make this dish?"}
-        />
-        <Button
-          action={this.handleFormSubmit}
-          type={"primary"}
-          title={"Submit"}
-          style={buttonStyle}
         />
         <Button
           action={this.handleClearForm}
           type={"secondary"}
           title={"Clear"}
+          style={buttonStyle}
+        />
+        <Button
+          action={this.handleFormSubmit}
+          type={"primary"}
+          title={"Submit"}
           style={buttonStyle}
         />
       </form>
@@ -125,4 +129,4 @@ const buttonStyle = {
   margin: "10px 10px 10px 10px"
 };
 
-export default FormContainer;
+export default RecipeNew;

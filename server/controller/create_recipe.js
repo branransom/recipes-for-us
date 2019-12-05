@@ -5,7 +5,7 @@ const createRecipe = payload => {
   const recipe = new Recipe({
     name: payload.name,
     description: payload.description,
-    foodCategory: payload.foodCategory,
+    meal: payload.meal,
     preparationTime: payload.preparationTime,
     numberOfServings: payload.numberOfServings,
     ingredients: payload.ingredients,
