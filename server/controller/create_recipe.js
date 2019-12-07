@@ -1,5 +1,4 @@
-const _ = require("lodash");
-const Recipe = require("../model/recipe.js");
+const Recipe = require('../model/recipe.js');
 
 const createRecipe = payload => {
   const recipe = new Recipe({
@@ -9,7 +8,7 @@ const createRecipe = payload => {
     preparationTime: payload.preparationTime,
     numberOfServings: payload.numberOfServings,
     ingredients: payload.ingredients,
-    instructions: payload.instructions
+    instructions: payload.instructions,
   });
 
   return recipe.save();
