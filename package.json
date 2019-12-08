@@ -6,7 +6,16 @@
   "scripts": {
     "build": "webpack --mode development --watch &",
     "start": "rimraf dist && npm run build && node server/index.js",
-    "dev": "rimraf dist && npm run build && nodemon server/index.js --ignore './src/'"
+    "dev": "rimraf dist && npm run build && nodemon server/index.js --ignore './src/'",
+    "redoc-bundle": "redoc-cli bundle ./api-spec.yml --output ./docs/index.html",
+    "redoc-reload": "live-server —-watch=docs/ --open=docs/",
+    "redoc-watch": "watch \"npm run redoc-blundle\" ./spec",
+    "api-doc": "concurrently \"npm run redoc-reload\" \"npm run redoc-watch\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run redoc-bundle"
+    }
   },
   "keywords": [],
   "author": "",
@@ -27,19 +36,24 @@
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
     "babel-loader": "^8.0.6",
+    "concurrently": "^5.0.0",
     "css-loader": "^3.2.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.1",
     "formik": "^2.0.4",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.1.0",
+    "live-server": "^1.2.1",
     "nodemon": "^1.19.4",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
+    "redoc-cli": "^0.9.2",
     "rimraf": "^3.0.0",
     "style-loader": "^1.0.0",
+    "watch": "^1.0.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"

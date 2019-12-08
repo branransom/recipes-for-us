@@ -1,11 +1,10 @@
 {
-  "extends": [
-    "prettier",
-  ],
-  "rules": {
-    "prettier/prettier": "error",
-  },
-  "plugins": [
-    "prettier"
-  ]
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "extends": ["prettier"],
+    "rules": {
+        "prettier/prettier": "error"
+    },
+    "plugins": ["prettier"]
 }
