@@ -3,7 +3,6 @@ info:
     title: "Recipe API"
     description: "Manage your recipes"
     version: 0.1.0
-servers:
 paths:
     /recipes:
         post:
