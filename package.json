@@ -4,18 +4,18 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "webpack -p && npm run docs",
+        "build": "webpack -p && npm run docs:generate",
         "build:dev": "webpack --mode development --watch &",
         "start": "rimraf dist && npm run build && node server/index.js",
-        "dev": "rimraf dist && npm run build && nodemon server/index.js --ignore './src/'",
-        "docs": "redoc-cli bundle ./spec/api-spec.yml --output ./docs/index.html --title=\"Recipe API\"",
+        "dev": "rimraf dist && npm run build:dev && nodemon server/index.js --ignore './src/'",
+        "docs:generate": "redoc-cli bundle ./spec/api-spec.yml --output ./docs/index.html --title=\"Recipe API\"",
         "docs:reload": "live-server --open=/docs --watch=./docs",
-        "docs:watch": "watch \"npm run docs\" ./spec",
+        "docs:watch": "watch \"npm run docs:generate\" ./spec",
         "docs:hot-reload": "concurrently \"npm run docs:reload\" \"npm run docs:watch\""
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run docs"
+            "pre-commit": "./scripts/generate-docs.sh"
         }
     },
     "keywords": [],
@@ -44,7 +44,6 @@
         "eslint-config-prettier": "^6.7.0",
         "eslint-plugin-prettier": "^3.1.1",
         "eslint-plugin-react": "^7.17.0",
-        "formik": "^2.0.4",
         "html-loader": "^0.5.5",
         "html-webpack-plugin": "^3.2.0",
         "husky": "^3.1.0",
