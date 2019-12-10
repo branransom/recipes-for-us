@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
 
 import Input from "../components/form/Input";
@@ -6,7 +6,7 @@ import TextArea from "../components/form/TextArea";
 import Select from "../components/form/Select";
 import Button from "../components/form/Button";
 
-class RecipeNew extends Component {
+class RecipeNew extends React.Component {
   constructor(props) {
     super(props);
 

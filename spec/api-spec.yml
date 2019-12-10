@@ -1,0 +1,50 @@
+openapi: "3.0.2"
+info:
+    title: "Recipe API"
+    description: "Manage your recipes"
+    version: 0.1.0
+servers:
+paths:
+    /recipes:
+        post:
+            tags:
+                - Recipe
+            summary: "Create a new recipe"
+            description: "Creates the requested recipe in a data-store so that it can be later accessed"
+            operationId: CreateRecipe
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                description:
+                                    type: string
+                                meal:
+                                    type: string
+                                    enum: [breakfast, lunch, dinner]
+                                preparationTime:
+                                    type: integer
+                                numberOfServings:
+                                    type: integer
+                                ingredients:
+                                    type: array
+                                    items:
+                                        type: string
+                                instructions:
+                                    type: string
+            responses:
+                201:
+                    description: Recipe created successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    id:
+                                        type: string
+                                        description: "A unique identifier that can be used to reference the recipe"
+                500:
+                    description: An error occurred
