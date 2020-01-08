@@ -28,7 +28,7 @@ class RecipeList extends React.Component {
     render() {
         return (
             <div className="ui padded segment">
-                <h1>Recipes</h1>
+                <h1>Recipes!!</h1>
                 <div className="ui divided list">
                     {this.renderRecipeNames()}
                 </div>
